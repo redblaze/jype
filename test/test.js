@@ -1,11 +1,19 @@
+const util = require('util');
 var TypeCheck = require('../lib/TypeCheck');
-var Type = require('../lib/Type');
+var validators = require('../lib/validators');
 
-var $T = new Type();
 
-var $TC = new TypeCheck({typeDefs: $T.getAliases()});
+var scope = require('./testScope1');
+var value = require('./testValue1');
 
-// var res = $TC.typeCheck({year: 2000, month: 2, date: 29}, $T.alias('Date'));
-var res = $TC.typeCheck('red_sparc@yahoo.com', $T.alias('Email'));
+var TC = new TypeCheck({
+    typeDefs: scope,
+    validators: validators
+});
 
-console.log(res);
+var type = {"type": "Alias", "alias": "Main"};
+
+var res = TC.run(value, type);
+
+
+console.log(util.inspect(res, {showHidden: true, depth: null}));
