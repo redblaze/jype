@@ -8,7 +8,7 @@ module.exports = {
             "gender": {"type": "Alias", "alias": "Gender"}
         },
         "validator": {
-            "mandatory": {"mandatory": ["name", "gender"]}
+            "mandatory": ["name", "gender"]
         }
     },
 
@@ -16,7 +16,8 @@ module.exports = {
         "type": "Union",
         "variants": {
             "male": {"type": "Void"},
-            "female": {"type": "Void"}
+            "female": {"type": "Void"},
+            "transgender": {"type": "Void"}
         }
     },
 
