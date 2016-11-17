@@ -22,6 +22,9 @@ var log = function(o) {
     if (res['status'] == 'error') {
         log(res['error']);
         return;
+    } else {
+        log(compile._scope);
+        log(compile._target);
     }
 
     var TC = new TypeCheck({

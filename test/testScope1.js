@@ -1,12 +1,15 @@
 var core = require('../examples/types');
+var merge = require('../lib/Merge');
 
-module.exports = {
+var scope = {
     "Main": {type: "Alias", "alias": "Employees"},
 
+    /*
     "Core": {
         "type": "Package",
         "package": core
     },
+    */
 
     "Employee": {
         "type": "Object",
@@ -36,3 +39,10 @@ module.exports = {
         "element": {"type": "Alias", "alias": "Employee"}
     }
 };
+
+merge(scope, {"Core": {"type": "Package", "package": core}});
+merge(scope, {"Core": {"type": "Package", "package": {
+    "Foobar": {"type": "String"}
+}}});
+
+module.exports = scope;
