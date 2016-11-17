@@ -1,7 +1,7 @@
 const util = require('util');
 var Compile = require('../lib/Compile');
 var TypeCheck = require('../lib/TypeCheck');
-var validators = require('../lib/validators');
+var validators = require('../examples/validators');
 
 
 var scope = require('./testScope1');

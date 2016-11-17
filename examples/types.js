@@ -1,4 +1,4 @@
-var TypeCheck = require('./TypeCheck');
+var TypeCheck = require('./../lib/TypeCheck');
 var $V = require('./validators');
 
 module.exports = {

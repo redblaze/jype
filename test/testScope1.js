@@ -1,4 +1,4 @@
-var core = require('../lib/Type');
+var core = require('../examples/types');
 
 module.exports = {
     "Main": {type: "Alias", "alias": "Employees"},
