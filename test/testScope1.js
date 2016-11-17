@@ -13,8 +13,8 @@ module.exports = {
         "fields": {
             "name": {"type": "String"},
             "gender": {"type": "Alias", "alias": "Gender"},
-            // "email": {"type": "Alias", "alias": "Email", "path": ["Core"]}
-            "email": {"type": "Alias", "alias": "Email"}
+            "email": {"type": "Alias", "alias": "Email", "path": ["Core"]}
+            // "email": {"type": "Alias", "alias": "Email"}
 
         },
         "validator": {
