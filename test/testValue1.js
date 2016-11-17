@@ -2,15 +2,15 @@ module.exports =
     [
         {
             "name": "Mike",
-            "gender": {"male": 1},
+            "gender": "male",
             "email": "aaa@gmail.com"
         },
         {
             "name": "Mary",
-            "gender": {"female": 0}
+            "gender": "female"
         },
         {
             "name": "Pete",
-            "gender": {"transgender": 1}
+            "gender": "transgender"
         }
     ];

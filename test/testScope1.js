@@ -25,12 +25,21 @@ var scope = {
         }
     },
 
+    /*
     "Gender": {
         "type": "Union",
         "variants": {
             "male": {"type": "Void"},
             "female": {"type": "Void"},
             "transgender": {"type": "Void"}
+        }
+    },
+    */
+
+    "Gender": {
+        "type": "String",
+        "validator": {
+            inList: ["male", "female", "transgender"]
         }
     },
 

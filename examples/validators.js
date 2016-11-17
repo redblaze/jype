@@ -1,3 +1,4 @@
+var $U = require('underscore');
 
 var Validator = function(proto) {
     var init = proto['init'];
@@ -91,6 +92,21 @@ var validators = {
 
         errorMessage: function(v, mandatory) {
             return '"' + this._missingField + '" is mandatory but missing.';
+        }
+    }),
+
+    'inList': Validator({
+        cfg: {
+            "type": "Array",
+            "element": "String"
+        },
+
+        check: function(v, list) {
+            return $U.contains(list, v);
+        },
+
+        errorMessage: function(v, list) {
+            return 'Value: "' + v + '" is not found in list: "' + list + '".';
         }
     })
 };
