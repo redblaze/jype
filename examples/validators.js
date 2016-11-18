@@ -1,31 +1,8 @@
 var $U = require('underscore');
-
-var Validator = function(proto) {
-    var init = proto['init'];
-    delete proto['init'];
-
-    if (proto['check'] == null) {
-        throw new Error('A validator must define "check" method.');
-    }
-
-    if (proto['errorMessage'] == null) {
-        throw new Error('A validator must define "errorMessage" method.');
-    }
-
-    var cls = function() {
-        if (init) {
-            init.apply(this, arguments);
-        }
-    };
-
-    cls.prototype = proto;
-
-    return cls;
-};
-
+var Class = require('better-js-class');
 
 var validators = {
-    'isEmail': Validator({
+    'isEmail': Class({
         check: function(s) {
             var re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|edu|gov|mil|biz|info|mobi|name|aero|asia|jobs|museum)\b/;
             return re.test(s);
@@ -36,7 +13,7 @@ var validators = {
         }
     }),
 
-    'isDateObject': Validator({
+    'isDateObject': Class({
         check: function(v) {
             var d = new Date(v['year'], v['month'], v['date']);
 
@@ -50,7 +27,7 @@ var validators = {
         }
     }),
 
-    'isInteger': Validator({
+    'isInteger': Class({
         check: function(v) {
             return Math.floor(v) == v;
         },
@@ -60,7 +37,7 @@ var validators = {
         }
     }),
 
-    'size': Validator({
+    'size': Class({
         cfg: {
             "type": "Number"
         },
@@ -74,7 +51,7 @@ var validators = {
         }
     }),
 
-    'mandatory': Validator({
+    'mandatory': Class({
         cfg: {
             "type": "Array",
             "element": {"type": "String"}
@@ -95,7 +72,7 @@ var validators = {
         }
     }),
 
-    'inList': Validator({
+    'inList': Class({
         cfg: {
             "type": "Array",
             "element": "String"
