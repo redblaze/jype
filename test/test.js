@@ -23,8 +23,8 @@ var log = function(o) {
         log(res['error']);
         return;
     } else {
-        log(compile._scope);
-        log(compile._target);
+        // log(compile._scope);
+        // log(compile._target);
     }
 
     var TC = new TypeCheck({
