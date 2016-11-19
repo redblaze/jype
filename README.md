@@ -29,12 +29,31 @@ npm install jype
 
 ## Use
 
+There are three exported values from jype package:
+  * Compile: A class for static checking of a schema.
+  * TypeCheck: A class for type checking a value against a schema.
+  * merge: A function that merges modular schema defintions.
+
 ```javascript
 var jype = require('jype');
 var Compile = jype.Compile;
 var TypeCheck = jype.TypeCheck;
 var merge = jype.merge;
 ```
+
+### Compile
+```js
+var compile = new compile(scope, validators);
+compile.compile;
+```
+
+### TypeCheck
+```js
+var typeCheck = new TypeCheck(scope, validators);
+typeCheck.run(value, type);
+```
+
+### merge
 
 ## Types
 
@@ -49,8 +68,8 @@ A JSON value can be a string, who type is represented by the following schema:
 With this schema, we can have the following validations:
 
 ```js
-TypeCheck.run("abc", {"type": "String"}); // returns true;
-TypeCheck.run(123, {"type": "String"});   // returns false;
+typeCheck.run("abc", {"type": "String"}); // ok
+typeCheck.run(123, {"type": "String"});   // error
 ```
 
 ### Number
@@ -64,8 +83,8 @@ A JSON value can be a Number, who type is represented by the following schema:
 With this schema, we can have the following validations:
 
 ```js
-TypeCheck.run(123, {"type": "Number"});   // returns true;
-TypeCheck.run("abc", {"type": "Number"}); // returns false;
+typeCheck.run(123, {"type": "Number"});   // ok
+typeCheck.run("abc", {"type": "Number"}); // error
 ```
 
 ### Boolean
@@ -79,10 +98,10 @@ A JSON value can be a Boolean, who type is represented by the following schema:
 With this schema, we can have the following validations:
 
 ```js
-TypeCheck.run(true, {"type": "Number"});   // returns true;
-TypeCheck.run(false, {"type": "Number"});   // returns true;
-TypeCheck.run("abc", {"type": "Number"}); // returns false;
-TypeCheck.run(100, {"type": "Number"}); // returns false;
+TypeCheck.run(true, {"type": "Boolean"});    // ok
+TypeCheck.run(false, {"type": "Boolean"});   // ok
+TypeCheck.run("abc", {"type": "Boolean"});   // error
+TypeCheck.run(100, {"type": "Boolean"});     // error
 ```
 
 ### Void
@@ -96,10 +115,10 @@ A JSON value can be a Void, which means it is free to be anything.  Such type is
 With this schema, we can have the following validations:
 
 ```js
-TypeCheck.run(true, {"type": "Number"});   // returns true;
-TypeCheck.run(false, {"type": "Number"});   // returns true;
-TypeCheck.run("abc", {"type": "Number"}); // returns true;
-TypeCheck.run(100, {"type": "Number"}); // returns true;
+TypeCheck.run(true, {"type": "Void"});    // ok
+TypeCheck.run(false, {"type": "Void"});   // ok
+TypeCheck.run("abc", {"type": "Void"});   // ok
+TypeCheck.run(100, {"type": "Void"});     // ok
 ```
 
 This type is only useful when used in combination with Union type.
@@ -111,7 +130,7 @@ A JSON value can be an array of elements of a certain type.  We represent the sc
 ```json
 {
     "type": "Array",
-    "element": [ElementType]
+    "element": ElementType
 }
 ```
 
