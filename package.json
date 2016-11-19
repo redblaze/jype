@@ -3,7 +3,7 @@
     "description": "Define and type-check recursive data types in JSON.",
     "main": "./lib/jype.js",
     "author": "Chiyan Chen",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "repository" : {
         "type" : "git",
         "url" : "https://github.com/redblaze/jype.git"
