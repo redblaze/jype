@@ -43,11 +43,54 @@ var validators = {
         },
 
         check: function(v, limit) {
-            return v.length < limit;
+            if ($U.isArray(v)) {
+                return v.length < limit;
+            }
+
+            if ($U.isObject(v)) {
+                return $U.keys(v).length < limit;
+            }
+
+            this._typeError = true;
+            return false;
         },
 
         errorMessage: function(v, limit) {
-            return 'Length is beyond limit "' + limit + '"';
+            if (this._typeError) {
+                return 'Validator "size" can only be used on arrays or objects.'
+            } else {
+                return 'Length is beyond limit "' + limit + '"';
+            }
+        }
+    }),
+
+    "singleton": Class({
+        check: function(v) {
+            if (!$U.isObject(v)) {
+                this._errorMessage = 'Validator "singleton" can only applied to objects.';
+                return false;
+            }
+
+            if ($U.keys(v).length != 1) {
+                this._errorMessage = 'Object is not a singleton.';
+                return false;
+            }
+
+            return true;
+        },
+
+        errorMessage: function() {
+            return this._errorMessage;
+        }
+    }),
+
+    "literal": Class({
+        check: function(v, cfg) {
+            return v == cfg;
+        },
+
+        errorMessage: function(v, cfg) {
+            return '"' + v + ' is not "' + cfg + '".';
         }
     }),
 
@@ -84,6 +127,18 @@ var validators = {
 
         errorMessage: function(v, list) {
             return 'Value: "' + v + '" is not found in list: "' + list + '".';
+        }
+    }),
+
+    'noUndefinedAlias': Class({
+        check: function(v) {
+            return true;
+        }
+    }),
+
+    'noAliasCycle': Class({
+        check: function(v) {
+            return true;
         }
     })
 };

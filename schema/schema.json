@@ -1,0 +1,150 @@
+{
+  "Core": {
+    "type": "Package",
+    "package": {
+      "Type": {
+        "type": "Union",
+        "variants": {
+          "Literal": {
+            "type": "Object",
+            "fields": {
+              "type": {"type": "Literal", "value": "Literal"},
+              "value": {"type": "String"},
+              "validator": {"type": "Alias", "name": "Validator"}
+            },
+            "mandatory": ["type", "value"]
+          },
+
+          "String": {
+            "type": "Object",
+            "fields": {
+              "type": {"type": "Literal", "value": "String"},
+              "validator": {"type": "Alias", "name": "Validator"}
+            },
+            "mandatory": ["type"]
+          },
+
+          "Number": {
+            "type": "Object",
+            "fields": {
+              "type": {"type": "Literal", "value": "Number"},
+              "validator": {"type": "Alias", "name": "Validator"}
+            },
+            "mandatory": ["type"]
+          },
+
+          "Boolean": {
+            "type": "Object",
+            "fields": {
+              "type": {"type": "Literal", "value": "Boolean"},
+              "validator": {"type": "Alias", "name": "Validator"}
+            },
+            "mandatory": ["type"]
+          },
+
+
+          "Void": {
+            "type": "Object",
+            "fields": {
+              "type": {"type": "Literal", "value": "Void"},
+              "validator": {"type": "Alias", "name": "Validator"}
+            },
+            "mandatory": ["type"]
+          },
+
+          "Array": {
+            "type": "Object",
+            "fields": {
+              "type": {"type": "Literal", "value": "Array"},
+              "element": {"type": "Alias", "name": "Type"},
+              "validator": {"type": "Alias", "name": "Validator"}
+            },
+            "mandatory": ["type", "element"]
+          },
+
+          "Hash": {
+            "type": "Object",
+            "fields": {
+              "type": {"type": "Literal", "value": "Hash"},
+              "element": {"type": "Alias", "name": "Type"},
+              "validator": {"type": "Alias", "name": "Validator"}
+            },
+            "mandatory": ["type", "element"]
+          },
+
+
+          "Object": {
+            "type": "Object",
+            "fields": {
+              "type": {"type": "Literal", "value": "Object"},
+              "fields": {"type": "Hash", "element": {"type": "Alias", "name": "Type"}},
+              "mandatory": {"type": "Array", "element": {"type": "String"}},
+              "validator": {"type": "Alias", "name": "Validator"}
+            },
+
+            "mandatory": ["type", "fields"]
+          },
+
+          "Union": {
+            "type": "Object",
+            "fields": {
+              "type": {"type": "Literal", "value": "Union"},
+              "variants": {"type": "Hash", "element": {"type": "Alias", "name": "Type"}},
+              "validator": {"type": "Alias", "name": "Validator"}
+            },
+
+            "mandatory": ["type", "variants"]
+          },
+
+          "Alias": {
+            "type": "Object",
+            "fields": {
+              "type": {"type": "Literal", "value": "Alias"},
+              "name": {"type": "String"},
+              "path": {"type": "Array", "element": {"type": "String"}},
+              "validator": {"type": "Alias", "name": "Validator"}
+            },
+
+            "mandatory": ["type", "name"]
+          }
+        }
+      },
+
+      "Scope": {
+        "type": "Hash",
+        "element": {
+          "type": "Union",
+          "variants": {
+            "Package": {
+              "type": "Object",
+              "fields": {
+                "type": {"type": "Literal", "value": "Package"},
+                "package": {"type": "Alias", "name": "Scope"}
+              },
+              "mandatory": ["type", "package"]
+            },
+            "Type": {"type": "Alias", "name": "Type"}
+          }
+        }
+      },
+
+      "Validator": {
+        "type": "Object",
+        "fields": {
+          "noUndefinedAlias": {"type": "Void"},
+          "noAliasCycle": {"type": "Void"}
+        }
+      }
+    }
+  },
+
+  "Root": {
+    "type": "Alias",
+    "name": "Scope",
+    "path": ["Core"],
+    "validator": {
+      "noUndefinedAlias": 1,
+      "noAliasCycle": 1
+    }
+  }
+}

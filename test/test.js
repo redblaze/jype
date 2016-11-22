@@ -4,12 +4,16 @@ var TypeCheck = require('../lib/TypeCheck');
 var validators = require('../examples/validators');
 
 
-var scope = require('./testScope1');
-var value = require('./testValue1');
+// var scope = require('./testScope1');
+// var value = require('./testValue1');
+
+var scope = require('../schema/schema.json');
+var value = require('../schema/schema.json');
 
 var log = function(o) {
     console.log(util.inspect(o, {showHidden: true, depth: null}));
 };
+
 
 (function() {
     var compile = new Compile({
@@ -26,13 +30,12 @@ var log = function(o) {
         // log(compile._scope);
         // log(compile._target);
     }
-
     var TC = new TypeCheck({
         typeDefs: scope,
         validators: validators
     });
 
-    var type = {"type": "Alias", "alias": "Main"};
+    var type = {"type": "Alias", "name": "Root"};
 
     var res = TC.run(value, type);
 
