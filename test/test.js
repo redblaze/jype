@@ -28,10 +28,10 @@ var log = function(o) {
         return;
     } else {
         // log(compile._scope);
-        // log(compile._target);
+        log(compile._target);
     }
     var TC = new TypeCheck({
-        typeDefs: scope,
+        scope: scope,
         validators: validators
     });
 
