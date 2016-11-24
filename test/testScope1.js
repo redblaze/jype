@@ -17,7 +17,6 @@ var scope = {
             "name": {"type": "String"},
             "gender": {"type": "Alias", "name": "Gender"},
             "email": {"type": "Alias", "name": "Email", "path": ["Core"]}
-
         },
         "validator": {
             "mandatory": ["name", "gender"]
@@ -29,13 +28,23 @@ var scope = {
         "variants": {
             "male": {"type": "Literal", "value": "male"},
             "female": {"type": "Literal", "value": "female"},
-            "transgender": {"type": "Literal", "value": "transgender"}
+            "transgender": {"type": "String", "validator": {"literal": "transgender"}}
         }
     },
 
     "Employees": {
-        "type": "Array",
-        "element": {"type": "Alias", "name": "Employee"}
+        "type": "Union",
+        "variants": {
+            "employees": {
+                "type": "Array",
+                "element": {"type": "Alias", "name": "Employee"}
+            }/*,
+            "cycle": {
+                "type": "Alias",
+                "name": "Employees"
+            }
+            */
+        }
     }
 };
 

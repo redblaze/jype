@@ -27,12 +27,13 @@ var log = function(o) {
         return;
     } else {
         // log(compile._scope);
-        // log(typeCheck._compile._target);
+        log(typeCheck._compile._target);
     }
 
     var type = {"type": "Alias", "name": "Main"};
 
     var res = typeCheck.run(value, type);
 
+    log('typeCheck.run result:');
     log(res);
 })();

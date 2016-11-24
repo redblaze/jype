@@ -85,6 +85,10 @@ var validators = {
     }),
 
     "literal": Class({
+        cfg: {
+            "type": "String"
+        },
+
         check: function(v, cfg) {
             return v == cfg;
         },
@@ -127,18 +131,6 @@ var validators = {
 
         errorMessage: function(v, list) {
             return 'Value: "' + v + '" is not found in list: "' + list + '".';
-        }
-    }),
-
-    'noUndefinedAlias': Class({
-        check: function(v) {
-            return true;
-        }
-    }),
-
-    'noAliasCycle': Class({
-        check: function(v) {
-            return true;
         }
     })
 };
