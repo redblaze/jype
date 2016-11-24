@@ -1,3 +1,5 @@
+This document is under construction and is not completely accurate yet.
+
 # jype
 
 jype provides an approach to define formal schemas that precisely
