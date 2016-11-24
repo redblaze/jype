@@ -1,14 +1,19 @@
 {
   "Cycle": {
-    "type": "Alias",
-    "name": "Cycle2",
-    "path": ["Core"]
+    "type": "Union",
+    "variants": {
+      "Cycle": {
+        "type": "Alias",
+        "name": "Cycle2",
+        "path": ["Core"]
+      }
+    }
   },
 
   "Core": {
     "type": "Package",
     "package": {
-      "Cycle2": {"type": "Alias", "name": "Type"},
+      "Cycle2": {"type": "Alias", "name": "Cycle"},
       "Type": {
         "type": "Union",
         "variants": {

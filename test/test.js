@@ -28,7 +28,7 @@ var log = function(o) {
         return;
     } else {
         // log(compile._scope);
-        log(compile._target);
+        // log(compile._target);
     }
     var TC = new TypeCheck({
         scope: scope,
