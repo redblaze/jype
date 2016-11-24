@@ -43,7 +43,7 @@ var validators = {
         },
 
         check: function(v, limit) {
-            if ($U.isArray(v)) {
+            if ($U.isArray(v) || $U.isString(v)) {
                 return v.length < limit;
             }
 
@@ -118,7 +118,7 @@ var validators = {
     'inList': Class({
         cfg: {
             "type": "Array",
-            "element": "String"
+            "element": {"type": "String"}
         },
 
         check: function(v, list) {

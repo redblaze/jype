@@ -1,19 +1,7 @@
 {
-  "Cycle": {
-    "type": "Union",
-    "variants": {
-      "Cycle": {
-        "type": "Alias",
-        "name": "Cycle2",
-        "path": ["Core"]
-      }
-    }
-  },
-
-  "Core": {
+  "Jype": {
     "type": "Package",
     "package": {
-      "Cycle2": {"type": "Alias", "name": "Cycle"},
       "Type": {
         "type": "Union",
         "variants": {
@@ -138,25 +126,13 @@
             "Type": {"type": "Alias", "name": "Type"}
           }
         }
-      },
-
-      "Validator": {
-        "type": "Object",
-        "fields": {
-          "noUndefinedAlias": {"type": "Void"},
-          "noAliasCycle": {"type": "Void"}
-        }
       }
     }
   },
 
-  "Root": {
-    "type": "Alias",
-    "name": "Scope",
-    "path": ["Core"],
-    "validator": {
-      "noUndefinedAlias": 1,
-      "noAliasCycle": 1
+  "Validator": {
+    "type": "Object",
+    "fields": {
     }
   }
 }

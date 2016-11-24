@@ -5,7 +5,7 @@ module.exports = {
     Email: {
         // 'type': 'String',
         "type": "Alias",
-        "alias": "String255",
+        "name": "String255",
         'validator': {
             "isEmail": 1
         }
@@ -21,9 +21,9 @@ module.exports = {
     Date: {
         'type': 'Object',
         'fields': {
-            'year': {'type': 'Alias', 'alias': 'Integer'},
-            'month': {'type': 'Alias', 'alias': 'Integer'},
-            'date': {'type': 'Alias', 'alias': 'Integer'}
+            'year': {'type': 'Alias', 'name': 'Integer'},
+            'month': {'type': 'Alias', 'name': 'Integer'},
+            'date': {'type': 'Alias', 'name': 'Integer'}
         },
         'validator': {
             'isDateObject': 1

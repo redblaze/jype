@@ -2,7 +2,7 @@ var core = require('../examples/types');
 var merge = require('../lib/Merge');
 
 var scope = {
-    "Main": {type: "Alias", "alias": "Employees"},
+    "Main": {"type": "Alias", "name": "Employees"},
 
     /*
     "Core": {
@@ -15,9 +15,8 @@ var scope = {
         "type": "Object",
         "fields": {
             "name": {"type": "String"},
-            "gender": {"type": "Alias", "alias": "Gender"},
-            "email": {"type": "Alias", "alias": "Email", "path": ["Core"]}
-            // "email": {"type": "Alias", "alias": "Email"}
+            "gender": {"type": "Alias", "name": "Gender"},
+            "email": {"type": "Alias", "name": "Email", "path": ["Core"]}
 
         },
         "validator": {
@@ -25,31 +24,23 @@ var scope = {
         }
     },
 
-    /*
     "Gender": {
         "type": "Union",
         "variants": {
-            "male": {"type": "Void"},
-            "female": {"type": "Void"},
-            "transgender": {"type": "Void"}
-        }
-    },
-    */
-
-    "Gender": {
-        "type": "String",
-        "validator": {
-            inList: ["male", "female", "transgender"]
+            "male": {"type": "Literal", "value": "male"},
+            "female": {"type": "Literal", "value": "female"},
+            "transgender": {"type": "Literal", "value": "transgender"}
         }
     },
 
     "Employees": {
         "type": "Array",
-        "element": {"type": "Alias", "alias": "Employee"}
+        "element": {"type": "Alias", "name": "Employee"}
     }
 };
 
 merge(scope, {"Core": {"type": "Package", "package": core}});
+
 merge(scope, {"Core": {"type": "Package", "package": {
     "Foobar": {"type": "String"}
 }}});
